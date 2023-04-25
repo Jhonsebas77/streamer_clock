@@ -25,7 +25,7 @@ analyzer:
 
 linter:
   rules:
-    # Erros
+    # Errors
     - avoid_empty_else
     - avoid_print
     - avoid_relative_lib_imports
@@ -60,7 +60,6 @@ linter:
     - require_trailing_commas
     - flutter_style_todos
     - always_declare_return_types
-    - always_put_control_body_on_new_line
     - always_put_required_named_parameters_first
     - always_require_non_null_named_parameters
     - always_specify_types
@@ -96,7 +95,6 @@ linter:
     - use_test_throws_matchers
     - use_late_for_private_fields_and_variables
     - implementation_imports
-    - invariant_booleans
     - join_return_with_assignment
     - library_names
     - library_prefixes
@@ -173,6 +171,9 @@ linter:
     - prefer_const_constructors
     - prefer_const_literals_to_create_immutables
     - sized_box_for_whitespace
+    - unnecessary_to_list_in_spreads
+    - use_colored_box
+    - use_decorated_box
 
     # Pub Rules
     - depend_on_referenced_packages

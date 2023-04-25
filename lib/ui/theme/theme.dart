@@ -7,11 +7,12 @@ MaterialColor backgroundColor = MaterialColor(0xff14141c, color);
 MaterialColor cardColor = MaterialColor(0xFF292B30, color);
 MaterialColor hoverColor = MaterialColor(0xFFA6D60E, color);
 ThemeData mainTheme = ThemeData(
-  primarySwatch: primarySwatch,
   primaryColor: primarySwatch,
   cardColor: cardColor,
   fontFamily: 'Rajdhani',
-  backgroundColor: backgroundColor,
   scaffoldBackgroundColor: backgroundColor,
   hoverColor: hoverColor,
+  colorScheme: ColorScheme.fromSwatch(primarySwatch: primarySwatch).copyWith(
+    background: backgroundColor,
+  ),
 );
