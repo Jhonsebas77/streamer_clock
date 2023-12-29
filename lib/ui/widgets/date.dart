@@ -1,13 +1,11 @@
-// ignore_for_file: always_specify_types
-
 part of com.jsob.flutter_clock.ui.widgets;
 
 class DateWidget extends StatelessWidget {
   const DateWidget({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => StreamBuilder(
-        stream: Stream.periodic(const Duration(seconds: 1)),
+  Widget build(BuildContext context) => StreamBuilder<dynamic>(
+        stream: Stream<dynamic>.periodic(const Duration(seconds: 1)),
         builder: (BuildContext context, AsyncSnapshot<Object?> snapshot) =>
             Center(
           child: Row(

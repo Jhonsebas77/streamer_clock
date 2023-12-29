@@ -8,13 +8,29 @@ analyzer:
     missing_return: error
     dead_code: info
     mixin_inherits_from_not_object: ignore
+    not_map_spread: ignore
+    for_in_of_invalid_type: ignore
+    not_iterable_spread: ignore
+    unnecessary_parenthesis: warning
+    prefer_const_constructors: warning
+    unnecessary_const: warning
+    flutter_style_todos: warning
+    require_trailing_commas: warning
+    directives_ordering: warning
+    non_constant_identifier_names: warning
+    unrelated_type_equality_checks: warning
+    use_build_context_synchronously: warning
+    eol_at_end_of_file: warning
+    unnecessary_brace_in_string_interps: warning
+    unnecessary_import: warning
+    avoid_print: warning
+    depend_on_referenced_packages: warning
+    use_late_for_private_fields_and_variables: ignore
 
   language:
     strict-raw-types: true
-
-  strong-mode:
-    implicit-casts: false
-    implicit-dynamic: true
+    strict-casts: true
+    strict-inference: true
 
   exclude:
     - .history/**
@@ -39,8 +55,7 @@ linter:
     - control_flow_in_finally
     - empty_statements
     - hash_and_equals
-    - iterable_contains_unrelated_type
-    - list_remove_unrelated_type
+    - collection_methods_unrelated_type
     - literal_only_boolean_expressions
     - no_adjacent_strings_in_list
     - no_duplicate_case_values
@@ -93,7 +108,6 @@ linter:
     - file_names
     - eol_at_end_of_file
     - use_test_throws_matchers
-    - use_late_for_private_fields_and_variables
     - implementation_imports
     - join_return_with_assignment
     - library_names
@@ -179,3 +193,82 @@ linter:
     - depend_on_referenced_packages
     - package_names
     - sort_pub_dependencies
+
+dart_code_metrics:
+  anti-patterns:
+    # - long-method
+    - long-parameter-list
+  # metrics:
+  #   cyclomatic-complexity: 20
+  #   lines-of-code: 100
+  #   maintainability-index: 50
+  #   maximum-nesting-level: 5
+  #   number-of-methods: 10
+  #   number-of-parameters: 4
+  #   source-lines-of-code: 50
+  #   technical-debt:
+  #     threshold: 1
+  #     todo-cost: 161
+  #     ignore-cost: 320
+  #     ignore-for-file-cost: 396
+  #     as-dynamic-cost: 322
+  #     deprecated-annotations-cost: 37
+  #     file-nullsafety-migration-cost: 41
+  #     unit-type: "USD"
+  #   weight-of-class: 0.33
+
+  rules:
+    # Common
+    - avoid-collection-methods-with-unrelated-types:
+        strict: false
+
+    - avoid-duplicate-exports
+    - avoid-global-state
+    # - avoid-ignoring-return-values #debatir
+    # - avoid-late-keyword #debatir
+    # - avoid-missing-enum-constant-in-map #debatir
+    # - avoid-non-null-assertion #debatir Repository.instance.request
+    - avoid-passing-async-when-sync-expected
+    - avoid-redundant-async
+    # - avoid-throw-in-catch-block # importante para crashlytics
+    - avoid-unnecessary-conditionals
+    - avoid-unnecessary-type-assertions
+    - avoid-unnecessary-type-casts
+    - avoid-unrelated-type-assertions
+    - avoid-unused-parameters
+    - no-boolean-literal-compare
+    - no-empty-block
+    - no-equal-then-else
+    - no-object-declaration
+    - prefer-async-await
+    - prefer-conditional-expressions:
+        ignore-nested: true
+
+    - prefer-first
+    - prefer-immediate-return
+    - prefer-iterable-of
+    - prefer-last
+    - prefer-moving-to-variable:
+        allowed-duplicated-chains: 5
+    - prefer-trailing-comma:
+        break-on: 3
+
+
+    # Flutter
+    - always-remove-listener
+    # - avoid-border-all debatir
+    - avoid-expanded-as-spacer
+    - avoid-returning-widgets
+    - avoid-unnecessary-setstate
+    - avoid-wrapping-in-padding
+    - check-for-equals-in-render-object-setters
+    - consistent-update-render-object
+    - prefer-const-border-radius
+    - prefer-correct-edge-insets-constructor
+    - prefer-extracting-callbacks:
+        ignored-named-arguments:
+          - onPressed
+          - onSubmitted
+        allowed-line-count: 5
+    # - prefer-single-widget-per-file
+    # - use-setstate-synchronously bien
