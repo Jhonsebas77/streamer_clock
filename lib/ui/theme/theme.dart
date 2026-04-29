@@ -13,6 +13,6 @@ ThemeData mainTheme = ThemeData(
   scaffoldBackgroundColor: backgroundColor,
   hoverColor: hoverColor,
   colorScheme: ColorScheme.fromSwatch(primarySwatch: primarySwatch).copyWith(
-    background: backgroundColor,
+    surface: backgroundColor,
   ),
 );

@@ -1,7 +1,7 @@
 part of com.jsob.flutter_clock.views;
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) => const Scaffold(

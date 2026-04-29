@@ -1,9 +1,7 @@
-// ignore_for_file: use_late_for_private_fields_and_variables
-
 part of com.jsob.flutter_clock.views;
 
 class LocalizationApp extends StatelessWidget {
-  const LocalizationApp({Key? key}) : super(key: key);
+  const LocalizationApp({super.key});
 
   @override
   Widget build(BuildContext context) => EasyLocalization(
