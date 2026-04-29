@@ -4,25 +4,23 @@ part of com.jsob.flutter_clock.views;
 Future<void> callbackDispatcher() async {
   Workmanager().executeTask((String taskName, Map<String, dynamic>? inputData) {
     DateTime now = DateTime.now();
+    String timeStr = '${now.hour.toString().padLeft(2, '0')}:'
+        '${now.minute.toString().padLeft(2, '0')}';
+    String dateStr = _formatDate(now);
+    
     return Future.wait<bool?>(<Future<bool?>>[
-      HomeWidget.saveWidgetData(
-        'title',
-        'Updated from Background',
-      ),
-      HomeWidget.saveWidgetData(
-        'message',
-        '''${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}''',
-      ),
+      HomeWidget.saveWidgetData('time', timeStr),
+      HomeWidget.saveWidgetData('date', dateStr),
     ]).then((List<bool?> value) async {
       await Future.wait<bool?>(<Future<bool?>>[
         HomeWidget.updateWidget(
-          name: 'HomeWidgetExampleProvider',
-          iOSName: 'HomeWidgetExample',
+          name: 'StreamerClockWidgetProvider',
+          iOSName: 'StreamerClockWidget',
         ),
         if (Platform.isAndroid)
           HomeWidget.updateWidget(
-            qualifiedAndroidName:
-                'es.antonborri.home_widget_example.glance.HomeWidgetReceiver',
+            qualifiedAndroidName: 
+                'com.example.streamer_clock.StreamerClockWidgetReceiver',
           ),
       ]);
       return !value.contains(false);
@@ -30,34 +28,10 @@ Future<void> callbackDispatcher() async {
   });
 }
 
-/// Called when Doing Background Work initiated from Widget
-@pragma('vm:entry-point')
-Future<void> interactiveCallback(Uri? data) async {
-  if (kIsWeb) return;
-
-  if (data?.host == 'titleclicked') {
-    List<String> greetings = <String>[
-      'Hello',
-      'Hallo',
-      'Bonjour',
-      'Hola',
-      'Ciao',
-      '哈洛',
-      '안녕하세요',
-      'xin chào',
-    ];
-    String selectedGreeting = greetings[Random().nextInt(greetings.length)];
-    await HomeWidget.setAppGroupId('YOUR_GROUP_ID');
-    await HomeWidget.saveWidgetData<String>('title', selectedGreeting);
-    await HomeWidget.updateWidget(
-      name: 'HomeWidgetExampleProvider',
-      iOSName: 'HomeWidgetExample',
-    );
-    if (Platform.isAndroid) {
-      await HomeWidget.updateWidget(
-        qualifiedAndroidName:
-            'es.antonborri.home_widget_example.glance.HomeWidgetReceiver',
-      );
-    }
-  }
+String _formatDate(DateTime date) {
+  List<String> weekdays = <String>['LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'DOM'];
+  List<String> months = <String>['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 
+      'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
+  return '${weekdays[date.weekday - 1]}, ${date.day.toString().padLeft(2, '0')} '
+      '${months[date.month - 1]}';
 }
