@@ -16,7 +16,9 @@ class _MyAppState extends State<MyApp> {
 
   void _initialize() {
     WidgetsFlutterBinding.ensureInitialized();
-    Workmanager().initialize(callbackDispatcher, isInDebugMode: kDebugMode);
+    if (!kIsWeb) {
+      Workmanager().initialize(callbackDispatcher, isInDebugMode: kDebugMode);
+    }
     initializeDateFormatting('es_CO');
   }
 

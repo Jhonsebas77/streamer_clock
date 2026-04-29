@@ -1,6 +1,5 @@
 part of com.jsob.flutter_clock.views;
 
-/// Used for Background Updates using Workmanager Plugin
 @pragma('vm:entry-point')
 Future<void> callbackDispatcher() async {
   Workmanager().executeTask((String taskName, Map<String, dynamic>? inputData) {
@@ -34,6 +33,8 @@ Future<void> callbackDispatcher() async {
 /// Called when Doing Background Work initiated from Widget
 @pragma('vm:entry-point')
 Future<void> interactiveCallback(Uri? data) async {
+  if (kIsWeb) return;
+
   if (data?.host == 'titleclicked') {
     List<String> greetings = <String>[
       'Hello',
