@@ -1,43 +1,25 @@
-part of com.jsob.flutter_clock.ui.widgets;
+part of com.ota_labs.streamer_clock.app.ui.widgets;
 
-class TimeWidget extends StatefulWidget {
-  const TimeWidget({Key? key}) : super(key: key);
+class TimeWidget extends StatelessWidget {
+  const TimeWidget({required this.now, super.key});
 
-  @override
-  State<TimeWidget> createState() => _TimeWidgetState();
-}
+  final DateTime now;
 
-class _TimeWidgetState extends State<TimeWidget> {
-  late final Timer _timer;
-  late DateTime _now;
-
-  @override
-  void initState() {
-    super.initState();
-    _now = DateTime.now();
-    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
-      setState(() {
-        _now = DateTime.now();
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer.cancel();
-    super.dispose();
-  }
+  static final DateFormat _format = DateFormat('hh:mm a');
 
   @override
   Widget build(BuildContext context) => Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          const Icon(Icons.access_time, color: Colors.green_brillant),
-          const SizedBox(width: 4),
-          Text(
-            DateFormat('hh:mm a').format(_now),
-            style: textStyle(color: Colors.green_brillant),
-          ),
-        ],
-      );
+    mainAxisSize: MainAxisSize.min,
+    children: <Widget>[
+      const Icon(Icons.access_time, color: Colors.green_brilliant),
+      const SizedBox(width: 4),
+      Flexible(
+        child: Text(
+          _format.format(now),
+          style: textStyle(color: Colors.green_brilliant),
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+    ],
+  );
 }

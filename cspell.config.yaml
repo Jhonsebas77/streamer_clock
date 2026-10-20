@@ -1,0 +1,19 @@
+version: "0.2"
+ignorePaths: []
+language: en,es
+dictionaryDefinitions: []
+dictionaries: []
+words:
+  - cupertino
+  - flutter_lints
+  - grayscale
+  - JSOB
+  - nullable
+  - Rajdhani
+  - regarlas
+  - scanline
+  - uuid
+ignoreWords: []
+import: []
+enabledFileTypes:
+  json: false

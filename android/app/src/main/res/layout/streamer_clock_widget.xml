@@ -20,14 +20,16 @@
         android:ellipsize="end"
         android:maxLines="1" />
 
-    <TextView
+    <TextClock
         android:id="@+id/time_widget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/green_brillant"
         android:textSize="16sp"
         android:fontFamily="sans-serif-medium"
-        android:text="10:30 AM"
+        android:format12Hour="hh:mm a"
+        android:format24Hour="hh:mm a"
+        android:textAllCaps="true"
         android:layout_marginStart="8dp" />
 
 </LinearLayout>

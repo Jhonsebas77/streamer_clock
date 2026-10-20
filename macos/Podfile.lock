@@ -1,23 +1,16 @@
 PODS:
   - FlutterMacOS (1.0.0)
-  - shared_preferences_foundation (0.0.1):
-    - Flutter
-    - FlutterMacOS
 
 DEPENDENCIES:
   - FlutterMacOS (from `Flutter/ephemeral`)
-  - shared_preferences_foundation (from `Flutter/ephemeral/.symlinks/plugins/shared_preferences_foundation/darwin`)
 
 EXTERNAL SOURCES:
   FlutterMacOS:
     :path: Flutter/ephemeral
-  shared_preferences_foundation:
-    :path: Flutter/ephemeral/.symlinks/plugins/shared_preferences_foundation/darwin
 
 SPEC CHECKSUMS:
-  FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
-  shared_preferences_foundation: e3a9640ad58a52aeaa1bd1d258faf5630a6598bb
+  FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
 
-PODFILE CHECKSUM: cb8e8761834f0588d95f497620ea4b60cfda587a
+PODFILE CHECKSUM: 3c211e517c8141967c8de715b12ff748811021a8
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.17.0

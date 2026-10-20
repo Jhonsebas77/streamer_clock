@@ -1,29 +1,44 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:streamer_clock/ui/views/view.dart';
+import 'package:streamer_clock/ui/widgets/widgets.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+  setUpAll(() => initializeDateFormatting('es_CO'));
+
+  Future<void> pumpAtWidth(WidgetTester tester, double width) async {
+    tester.view
+      ..physicalSize = Size(width, 400)
+      ..devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
     await tester.pumpWidget(const MyApp());
+  }
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  testWidgets('shows date and time in a row on wide screens', (
+    WidgetTester tester,
+  ) async {
+    await pumpAtWidth(tester, 600);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.byType(DateWidget), findsOneWidget);
+    expect(find.byType(TimeWidget), findsOneWidget);
+    expect(
+      tester.getTopLeft(find.byType(TimeWidget)).dy,
+      tester.getTopLeft(find.byType(DateWidget)).dy,
+    );
   });
+
+  for (double width in <double>[250, 120, 70]) {
+    testWidgets('stacks date over time without overflow at $width px', (
+      WidgetTester tester,
+    ) async {
+      await pumpAtWidth(tester, width);
+
+      expect(tester.takeException(), isNull);
+      expect(
+        tester.getTopLeft(find.byType(TimeWidget)).dy,
+        greaterThan(tester.getTopLeft(find.byType(DateWidget)).dy),
+      );
+    });
+  }
 }

@@ -1,32 +1,13 @@
-part of com.jsob.flutter_clock.views;
+part of com.ota_labs.streamer_clock.app.ui.views;
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    _initialize();
-    super.initState();
-  }
-
-  void _initialize() {
-    WidgetsFlutterBinding.ensureInitialized();
-    if (!kIsWeb) {
-      Workmanager().initialize(callbackDispatcher, isInDebugMode: kDebugMode);
-    }
-    initializeDateFormatting('es_CO');
-  }
-
-  @override
   Widget build(BuildContext context) => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Time',
-        theme: mainTheme,
-        home: const HomeView(),
-      );
+    debugShowCheckedModeBanner: false,
+    title: 'Streamer Clock',
+    theme: mainTheme,
+    home: const HomeView(),
+  );
 }
