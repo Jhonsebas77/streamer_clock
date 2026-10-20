@@ -2,17 +2,22 @@
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.41.6-02569B?logo=flutter&logoColor=white)](https://docs.flutter.dev/release/archive)
 [![Dart](https://img.shields.io/badge/Dart-3.11.4-0175C2?logo=dart&logoColor=white)](https://dart.dev)
+[![Deploy](https://github.com/Jhonsebas77/streamer_clock/actions/workflows/deploy-web.yml/badge.svg)](https://github.com/Jhonsebas77/streamer_clock/actions/workflows/deploy-web.yml)
 
 ![Android](https://img.shields.io/badge/Android_7.0+_(API_24)-3DDC84?logo=android&logoColor=white)
 ![iOS](https://img.shields.io/badge/iOS_15+-000000?logo=apple&logoColor=white)
 ![macOS](https://img.shields.io/badge/macOS_12+-000000?logo=apple&logoColor=white)
-![Web](https://img.shields.io/badge/Web-4285F4?logo=googlechrome&logoColor=white)
+[![Web](https://img.shields.io/badge/Web-4285F4?logo=googlechrome&logoColor=white)](https://jhonsebas77.github.io/streamer_clock/)
 ![Windows](https://img.shields.io/badge/Windows-0078D4?logo=windows&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black)
 
 ![Streamer Clock Logo](https://i.ibb.co/1TRdqDJ/app-icon-128.png)
 
 Un reloj digital diseñado para streamers, que muestra la hora y la fecha en tiempo real con un diseño minimalista ideal para overlays de streaming.
+
+**Demo en vivo:** https://jhonsebas77.github.io/streamer_clock/
+
+> Para usarlo en OBS/Streamlabs, agrega una fuente de **Navegador** con esa URL.
 
 ## Funcionalidades
 
@@ -87,6 +92,10 @@ flutter test
 ```
 
 Los tests verifican que fecha y hora se muestren en una fila en pantallas anchas y que se apilen sin overflow en pantallas angostas.
+
+## Despliegue web
+
+Cada push a `main` publica la versión web en **[GitHub Pages](https://jhonsebas77.github.io/streamer_clock/)** mediante el workflow `.github/workflows/deploy-web.yml`, que corre `flutter analyze`, `flutter test` y `flutter build web` antes de desplegar. También se puede lanzar manualmente desde la pestaña **Actions** → *Deploy web to GitHub Pages* → *Run workflow*.
 
 ## Estructura del proyecto
 
